@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="gnome-shell-extensions">
+  <schema id="org.gnome.shell.extensions.notification-logger" path="/org/gnome/shell/extensions/notification-logger/">
+    <key name="exclude-apps" type="s">
+      <default>'Signal,'</default>
+      <summary>Exclude apps from logging</summary>
+      <description>Comma-separated list of application names to ignore when logging notifications (matches source.title)</description>
+    </key>
+  </schema>
+</schemalist>

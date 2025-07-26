@@ -1,0 +1,34 @@
+Below are helpful commands for development and debugging.
+The user should not need them.
+
+======== Reset and clear cache ==================
+gnome-extensions disable notification-logger@charles-kaminski.github.io
+gnome-extensions reset notification-logger@charles-kaminski.github.io
+rm -rf ~/.cache/gnome-shell/extensions/* 
+
+======== Enable ========================
+gnome-extensions enable notification-logger@charles-kaminski.github.io
+
+======== Testing =========================
+journalctl /usr/bin/gnome-shell -f
+or
+journalctl --user -f | grep "Notification Logger"
+
+
+notify-send "Logger Test" "This is a test notification body"
+notify-send -u low "Logger Test" "Low urgency"
+notify-send -u normal "Logger Test" "Normal urgency"
+notify-send -u critical "Logger Test" "Critical urgency"
+
+========== Compile Schema ================
+glib-compile-schemas schemas/
+
+========== Check Preferences =============
+gnome-extensions prefs notification-logger@charles-kaminski.github.io
+
+
+=========== Dump structure and files to terminal =================
+echo "=== Directory Structure ===" && \
+find ~/.local/share/gnome-shell/extensions/notification-logger@charles-kaminski.github.io -print && \
+echo -e "\n=== File Contents ===" && \
+find ~/.local/share/gnome-shell/extensions/notification-logger@charles-kaminski.github.io -type f -exec bash -c 'echo -e "\n--- {} ---"; cat "{}"' \;

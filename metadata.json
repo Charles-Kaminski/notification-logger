@@ -1,0 +1,10 @@
+{
+  "uuid": "notification-logger@charles-kaminski.github.io",
+  "name": "Notification Logger",
+  "description": "Logs GNOME Shell notifications to ~/.notifications/YYYY_MM_DD.log",
+  "settings-schema": "org.gnome.shell.extensions.notification-logger",
+  "shell-version": ["46"],
+  "url": "https://github.com/Charles-Kaminski/notification-logger",
+  "version": 1,
+  "author": "Charles Kaminski"
+}
