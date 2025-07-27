@@ -29,6 +29,10 @@ gnome-extensions prefs notification-logger@charles-kaminski.github.io
 ========== Query the Details of a GNOME extension ==========
 gnome-extensions info notification-logger@charles-kaminski.github.io
 
+========== Nested Wayland Session ========
+https://gjs.guide/extensions/development/creating.html#testing-the-extension
+dbus-run-session -- gnome-shell --nested --wayland
+
 =========== Dump structure and files to terminal =================
 echo "=== Directory Structure ===" && \
 find ~/.local/share/gnome-shell/extensions/notification-logger@charles-kaminski.github.io -print && \
