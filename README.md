@@ -16,7 +16,7 @@ There are other Notification Loggers for GNOME.  I built this one because it wor
 ### Install from extensions.gnome.org
 The easiest way to install **Notification Logger** is through the official GNOME Extensions website.  It requires a browser extension to bridge between your browser (such as Firefox) and GNOME.  The website will prompt you to install the browser extension:
 
-1. Visit the [Notification Logger page on extensions.gnome.org](https://extensions.gnome.org/).
+1. Visit the [Modern Notification Logger](https://extensions.gnome.org/extension/8384/modern-notification-logger/) page on extensions.gnome.org.
 2. Install the browser extension.
 3. Use the toggle switch on the web page to enable the Notification Logger extension.
 4. It will be installed and enabled automatically using the GNOME browser extension tool.
@@ -39,6 +39,7 @@ There are a number of native GNOME Extension Managers to choose from.  An exampl
    ```bash
    git clone https://github.com/Charles-Kaminski/notification-logger.git ~/.local/share/gnome-shell/extensions/notification-logger@charles-kaminski.github.io
    ```
+   Double check that the project files are in the root directory and not put into a subdirectory.  Some versions of git, like GitHub Desktop, will do this and you need to remove the subdirectory.
 3. Compile the schema:
    ```bash
    glib-compile-schemas ~/.local/share/gnome-shell/extensions/notification-logger@charles-kaminski.github.io/schemas/
@@ -48,7 +49,7 @@ There are a number of native GNOME Extension Managers to choose from.  An exampl
    ```bash
    gnome-extensions enable notification-logger@charles-kaminski.github.io
    ```
-5. Log out of Ubuntu and log back in to force Ubuntu's Wayland service to reload extensions.
+5. If you made any changes and you are using Ubuntu, log out of Ubuntu and log back in to force Ubuntu's Wayland service to reload extensions.
 
 ## Disable and Uninstall Modern Notification Logger ##
 Your extension manager or GNOME Extensions website provides options to disable and uninstall.
