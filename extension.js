@@ -8,7 +8,7 @@ import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/
 const ByteArray = imports.byteArray;
 
 let originalCountUpdated;
-const loggedNotifications = new WeakSet();
+let loggedNotifications = new WeakSet();
 
 function getSanitizedExcludeApps(settings) {
     return settings.get_string('exclude-apps')
@@ -18,8 +18,6 @@ function getSanitizedExcludeApps(settings) {
 }
 
 function handleNotificationLogging(settings, source) {
-    log(`Notification Logger: handleNotificationLogging called for source: ${source.title || 'unknown'}`);
-
     for (const notification of source.notifications) {
         if (loggedNotifications.has(notification)) continue;
         loggedNotifications.add(notification);
@@ -45,7 +43,6 @@ function handleNotificationLogging(settings, source) {
         // Exclude apps based on cleaned list
         const excluded = getSanitizedExcludeApps(settings);
         if (excluded.includes(appName)) {
-            log(`Notification Logger: Skipping excluded app: ${appName}`);
             continue;
         }
 
@@ -59,7 +56,6 @@ function handleNotificationLogging(settings, source) {
             const dir = Gio.File.new_for_path(logDirPath);
             if (!dir.query_exists(null)) {
                 dir.make_directory_with_parents(null);
-                log(`Notification Logger: Created log directory at ${logDirPath}`);
             }
 
             const file = Gio.File.new_for_path(filename);
@@ -69,7 +65,6 @@ function handleNotificationLogging(settings, source) {
             stream.write_all(ByteArray.fromString(message), null);
             stream.close(null);
 
-            log(`Notification Logger: Logged notification from ${appName}`);
         } catch (e) {
             logError(e, 'Notification Logger: Failed to write notification log');
         }
@@ -79,17 +74,6 @@ function handleNotificationLogging(settings, source) {
 export default class NotificationLoggerExtension extends Extension {
     enable() {
         this._settings = this.getSettings();
-
-        // Create a panel button (indicator)
-        this._indicator = new PanelMenu.Button(0.0, this.metadata.name, false);
-        const icon = new St.Icon({
-            icon_name: 'face-laugh-symbolic',
-            style_class: 'system-status-icon',
-        });
-        //this._indicator.add_child(icon);
-
-        this._indicator.menu.addAction(_('Preferences'), () => this.openPreferences());
-        Main.panel.addToStatusArea(this.uuid, this._indicator);
 
         // Hook into the notification tray
         const settings = this._settings; // store settings in closure
@@ -102,12 +86,6 @@ export default class NotificationLoggerExtension extends Extension {
                 logError(e, 'Notification Logger: countUpdated failed');
             }
         };
-
-        this._settings.connect('changed::exclude-apps', () => {
-            log(`Notification Logger: Exclude apps changed to: ${this._settings.get_string('exclude-apps')}`);
-        });
-
-        //log('Notification Logger: Extension enabled');
     }
 
     disable() {
@@ -116,12 +94,7 @@ export default class NotificationLoggerExtension extends Extension {
             originalCountUpdated = null;
         }
 
-        if (this._indicator) {
-            this._indicator.destroy();
-            this._indicator = null;
-        }
-
         this._settings = null;
-        //log('Notification Logger: Extension disabled');
+        loggedNotifications = new WeakSet(); 
     }
 }

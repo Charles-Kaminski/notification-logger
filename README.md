@@ -39,11 +39,16 @@ There are a number of native GNOME Extension Managers to choose from.  An exampl
    ```bash
    git clone https://github.com/Charles-Kaminski/notification-logger.git ~/.local/share/gnome-shell/extensions/notification-logger@charles-kaminski.github.io
    ```
-3. Enable the extension:
+3. Compile the schema:
+   ```bash
+   glib-compile-schemas ~/.local/share/gnome-shell/extensions/notification-logger@charles-kaminski.github.io/schemas/
+   
+   ```
+4. Enable the extension:
    ```bash
    gnome-extensions enable notification-logger@charles-kaminski.github.io
    ```
-4. Log out of Ubuntu and log back in to force Ubuntu's Wayland service to reload extensions.
+5. Log out of Ubuntu and log back in to force Ubuntu's Wayland service to reload extensions.
 
 ## Disable and Uninstall Notification Logger ##
 Your extension manager or GNOME Extensions website provides options to disable and uninstall.
