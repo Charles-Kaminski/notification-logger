@@ -26,6 +26,8 @@ glib-compile-schemas schemas/
 ========== Check Preferences =============
 gnome-extensions prefs notification-logger@charles-kaminski.github.io
 
+========== Query the Details of a GNOME extension ==========
+gnome-extensions info notification-logger@charles-kaminski.github.io
 
 =========== Dump structure and files to terminal =================
 echo "=== Directory Structure ===" && \

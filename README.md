@@ -1,10 +1,10 @@
-# Notification Logger
+# Modern Notification Logger
 
 Have you ever clicked on a GNOME notification you needed and it went away forever?  This GNOME Extension will solve that problem for you.  It logs GNOME Shell notifications to `~/.notifications/YYYY_MM_DD.log`.  
 
 You can also configure it to ignore any number of sensitive apps you don't want logged, such as Signal.
 
-There are other Notification Loggers for GNOME.  I built this one because it works for Ubuntu 24 LTS, which uses GNOME 46. GNOME 46 contains distinct differences with GNOME's new object model that breaks other implementations.  I also needed something that would exclude logging alerts from a number of sensitive apps.
+There are other Notification Loggers for GNOME.  I built this one because it works for Ubuntu 24 LTS, which uses GNOME 46. GNOME 46 contains distinct differences with GNOME's new object model that breaks other implementations.  I also needed something that could exclude logging alerts from a number of sensitive apps.
 
 ## Features
 - Logs GNOME notifications with timestamps and urgency levels.
@@ -50,7 +50,7 @@ There are a number of native GNOME Extension Managers to choose from.  An exampl
    ```
 5. Log out of Ubuntu and log back in to force Ubuntu's Wayland service to reload extensions.
 
-## Disable and Uninstall Notification Logger ##
+## Disable and Uninstall Modern Notification Logger ##
 Your extension manager or GNOME Extensions website provides options to disable and uninstall.
 
 To disable using the command line:
