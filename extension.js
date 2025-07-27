@@ -8,7 +8,6 @@ import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/
 
 let originalCountUpdated;
 let loggedNotifications = new WeakSet();
-const encoder = new TextEncoder();
 
 function getSanitizedExcludeApps(settings) {
     return settings.get_string('exclude-apps')
@@ -62,6 +61,7 @@ function handleNotificationLogging(settings, source) {
             const stream = file.append_to(Gio.FileCreateFlags.NONE, null);
 
             const message = `[${localTime}] (${urgency}) ${appName} - ${safeTitle}: ${safeBody}${flagSuffix}\n`;
+            const encoder = new TextEncoder();
             stream.write_all(encoder.encode(message), null);
             stream.close(null);
 
