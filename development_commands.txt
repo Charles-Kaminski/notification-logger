@@ -37,4 +37,11 @@ dbus-run-session -- gnome-shell --nested --wayland
 echo "=== Directory Structure ===" && \
 find ~/.local/share/gnome-shell/extensions/notification-logger@charles-kaminski.github.io -print && \
 echo -e "\n=== File Contents ===" && \
-find ~/.local/share/gnome-shell/extensions/notification-logger@charles-kaminski.github.io -type f -exec bash -c 'echo -e "\n--- {} ---"; cat "{}"' \;
+find ~/.local/share/gnome-shell/extensions/notification-logger@charles-kaminski.github.io \
+  -type d -name '.*' -prune -o \
+  -type f -not -name 'LICENSE.txt' \
+  -type f -not -name 'README.md' \
+  -type f -not -name 'gschemas.compiled' \
+  -type f -not -name 'development_commands.txt' \
+  -type f -not -name '*.zip' \
+  -exec bash -c 'echo -e "\n--- {} ---"; cat "{}"' \;

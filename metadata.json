@@ -5,6 +5,7 @@
   "settings-schema": "org.gnome.shell.extensions.notification-logger",
   "shell-version": ["46"],
   "url": "https://github.com/Charles-Kaminski/notification-logger",
-  "version": 1,
+  "version": 2,
+  "version-name": "1.1",
   "author": "Charles Kaminski"
 }

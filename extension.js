@@ -5,10 +5,10 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as MessageTray from 'resource:///org/gnome/shell/ui/messageTray.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
-const ByteArray = imports.byteArray;
 
 let originalCountUpdated;
 let loggedNotifications = new WeakSet();
+const encoder = new TextEncoder();
 
 function getSanitizedExcludeApps(settings) {
     return settings.get_string('exclude-apps')
@@ -62,7 +62,7 @@ function handleNotificationLogging(settings, source) {
             const stream = file.append_to(Gio.FileCreateFlags.NONE, null);
 
             const message = `[${localTime}] (${urgency}) ${appName} - ${safeTitle}: ${safeBody}${flagSuffix}\n`;
-            stream.write_all(ByteArray.fromString(message), null);
+            stream.write_all(encoder.encode(message), null);
             stream.close(null);
 
         } catch (e) {
